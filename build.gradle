@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+        // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
+        maven { url = 'https://maven.minecraftforge.net' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
+    }
+}
+
+plugins {
+    id 'org.spongepowered.plugin' version '0.9.0'
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+
+group = 'com.github.fntlv'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://jitpack.io'
+    }
+}
+
+dependencies {
+    compileOnly 'org.spongepowered:spongeforge:1.12.2-2838-7.4.0'
+    minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
+    implementation files('Thaumcraft-1.12.2-6.1.BETA26.jar')
+    implementation files('ThaumicAugmentation-1.12.2-2.1.5.jar')
+}
+
+minecraft {
+    mappings channel: 'stable', version: '39-1.12'
+}
+
+sponge.plugin.id = 'thaumcraftfocusban'
+
+[compileJava,compileTestJava]*.options*.encoding = 'UTF-8'
